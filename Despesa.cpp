@@ -8,6 +8,10 @@ class Despesa{
         string tipoDeGastos;
 
     public:
+        Despesa(double v,string t){
+            this->valor =v;
+            this->tipoDeGastos=t;
+        }
         double getValor(){
             return valor;
         }

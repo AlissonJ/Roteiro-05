@@ -2,34 +2,47 @@
 #include<string>
 #include "Despesa.cpp"
 #include <vector>
-#include <string.h>
 using namespace std;
 
 class ControleDeGastos{
     private:
-    vector<Despesa> despesas;
+    vector <Despesa> despesas;
     public:
 
     void setDespesas(double v, string t){
-
+        despesas.push_back( Despesa(v,t) );
     }
-    double calculaTotalDeDespesas(){    //valor total das despesas do sistema
-        double total =0;
+    double calculaTotalDeDespesas(){
+        double total = 0;
         for(int i=0;i<=despesas.size();i++){
             total = total + despesas[i].getValor();
         }
         return total;
     }
     bool existeDespesaDoTipo(string t){
-        int aux=0;
         for(int j=0;j<=despesas.size();j++){
-            string aux02= despesas[j].getTipoDeGastos();
-            if(aux02 == t){   //aux02.compare(t)
+            string aux= despesas[j].getTipoDeGastos();
+            if(aux == t){
                 return true;
-                break;
+            }else{
+                return false;
             }
-        }return false;
-
+        }
     }
 
 };
+
+int main(){
+
+    ControleDeGastos obj;
+    obj.setDespesas(275.30,"carro");
+    obj.setDespesas(96.00,"comida");
+    cout.precision(2);
+    cout<<fixed<<"Total de despesas: R$ "<<obj.calculaTotalDeDespesas()<<endl;
+    cout<<"Existe despesa de carro ?"<<endl;
+    cout.setf(ios::boolalpha);
+    cout<<obj.existeDespesaDoTipo("carro");
+
+return 0;
+}
+
